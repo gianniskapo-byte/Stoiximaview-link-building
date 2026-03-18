@@ -611,27 +611,33 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:var
 /* ── KEY HINT ── */
 #key-hint{position:fixed;bottom:36px;right:18px;font-size:10px;color:rgba(255,255,255,.2);z-index:100}
 
-/* ── RD PACING CHART (slide 2) ── */
-.rd-wrap{padding:8px 56px 0;display:flex;gap:24px;align-items:flex-start;flex:1;min-height:0}
-.rd-chart-col{flex:1;display:flex;flex-direction:column;gap:6px}
-.rd-legend{display:flex;gap:18px;flex-wrap:wrap}
+/* ── RD PACING CHART v2 (slide 2) ── */
+.rd2-wrap{padding:6px 56px 2px;display:flex;flex-direction:column;gap:7px;flex:1}
+.rd2-legend{display:flex;gap:18px;flex-wrap:wrap}
 .rdl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.55);font-weight:500}
 .rdl-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.rd-chart{display:flex;gap:6px;flex:1}
-.rdm{flex:1;display:flex;flex-direction:column;align-items:stretch}
-.rdm-pos{display:flex;gap:2px;align-items:flex-end;height:200px;padding-bottom:0}
-.rdm-base{height:1px;background:rgba(255,255,255,.22);width:100%}
-.rdm-neg{display:flex;gap:2px;align-items:flex-start;height:52px}
-.rdm-lbl{font-size:10px;color:rgba(255,255,255,.38);text-align:center;margin-top:5px;white-space:nowrap}
-.rdb{flex:1;border-radius:2px 2px 0 0;min-width:0;position:relative}
-.rdb-n{flex:1;border-radius:0 0 2px 2px;min-width:0}
-.rd-peak-label{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:#FF9A3C;font-weight:800;white-space:nowrap;background:rgba(0,0,0,.5);border-radius:3px;padding:1px 4px}
-.rd-kpis{width:152px;display:flex;flex-direction:column;gap:8px;padding-top:28px}
-.rd-kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:10px 12px}
-.rd-kpi-lbl{font-size:10px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.6px;margin-bottom:3px}
-.rd-kpi-val{font-size:22px;font-weight:800;line-height:1.1}
-.rd-kpi-sub{font-size:10px;color:rgba(255,255,255,.32);margin-top:2px}
-@keyframes barRise{from{transform:scaleY(0);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}}
+.rd2-chart-box{height:175px;position:relative}
+/* Table */
+.rd-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.rd-tbl th{padding:6px 10px;text-align:center;font-size:10px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.rd-tbl th:first-child{text-align:left;width:180px;padding-left:12px}
+.rd-tbl td{padding:6px 10px;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);font-weight:500;color:rgba(255,255,255,.65)}
+.rd-tbl td:first-child{text-align:left;padding-left:12px;color:#fff;font-weight:600}
+.rd-tbl-me td{background:rgba(196,244,0,.05)}
+.rd-tbl-me td:first-child{color:var(--lime)}
+.rdtbl-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:7px;vertical-align:middle;flex-shrink:0}
+.rd-you{background:rgba(196,244,0,.18);color:var(--lime);font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:5px;vertical-align:middle}
+.rdtc-dr{color:rgba(255,255,255,.3)!important;font-size:11px}
+.rdtc-pos{color:#7AE8A7}
+.rdtc-hipos{color:#C4F400;font-weight:700}
+.rdtc-neg{color:#FF7A7A}
+.rdtc-avg-good{color:#7AE8A7;font-weight:700}
+.rdtc-avg-bad{color:#FF7A7A;font-weight:700}
+/* Stat chips row */
+.rd2-stats{display:flex;gap:10px}
+.rd2-stat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px 12px;display:flex;align-items:center;gap:10px}
+.rd2-sv{font-size:18px;font-weight:800;line-height:1}
+.rd2-sl{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px}
 </style>
 </head>
 <body>
@@ -665,147 +671,96 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:var
 <div class="slide bg-dark" id="s2">
   <div class="accent-bar"></div>
   <div class="sl-hdr on-dark"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iRGVzaWduIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1OTUuMiAxMDIuOCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogIzU4NThmOTsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGc+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01Mi42LDIxLjhsMjUuNSw1OS4zaC0xMi4xbC01LjUtMTMuNmgtMjUuN2wtNS40LDEzLjZoLTExLjhsMjUuOC01OS4yaDkuMWwuMS0uMVpNNDcuNywzNC4zbC05LjMsMjQuMWgxOC40cy05LjEtMjQuMS05LjEtMjQuMVoiLz4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4Ni4zLDM3LjRjLTEuOS0zLjgtNC41LTYuOC03LjYtOS4xcy02LjYtNC0xMC41LTUtNy44LTEuNS0xMS42LTEuNWgtNzIuNXY1OS4yaDcyLjVjMy45LDAsNy43LS42LDExLjYtMS43LDMuOS0xLjEsNy40LTIuOSwxMC41LTUuM3M1LjctNS41LDcuNi05LjJjMS45LTMuNywyLjktOC4yLDIuOS0xMy40cy0xLTEwLjItMi45LTE0TTEwMy4zLDcxLjhoLTguOFYzMC44aDguOGMyLjcsMCw1LjUuMyw4LjIuOCwyLjcuNiw1LjIsMS42LDcuNCwzLjEsMi4yLDEuNSw0LDMuNiw1LjQsNi4zczIuMSw2LjEsMi4xLDEwLjQtLjcsNy4zLTIuMSwxMGMtMS40LDIuNy0zLjIsNC43LTUuNCw2LjItMi4yLDEuNS00LjcsMi42LTcuNCwzLjMtMi43LjYtNS41LDEtOC4yLDFNMTI5LjYsNzEuOGMyLTIsMy43LTQuMyw1LjEtNywxLjktMy43LDIuOS04LjIsMi45LTEzLjRzLTEtMTAuMi0yLjktMTRjLTEuMy0yLjUtMi45LTQuNy00LjctNi41LDIuNiwwLDUuMy4zLDcuOS44LDIuNy42LDUuMiwxLjYsNy40LDMuMXM0LDMuNiw1LjQsNi4zLDIuMSw2LjEsMi4xLDEwLjQtLjcsNy4zLTIuMSwxMGMtMS40LDIuNy0zLjIsNC43LTUuNCw2LjJzLTQuNywyLjYtNy40LDMuM2MtMi43LjYtNS41LDEtOC4yLDFoLS4xdi0uMlpNMTc1LjgsNjEuNGMtMS40LDIuNi0zLjIsNC43LTUuNCw2LjJzLTQuNywyLjYtNy40LDMuM2MtMi4zLjUtNC42LjgtNi45LjksMi0yLDMuNy00LjMsNS4xLTcsMS45LTMuNywyLjktOC4yLDIuOS0xMy40cy0xLTEwLjItMi45LTE0Yy0xLjMtMi41LTIuOS00LjYtNC43LTYuNSwyLjIsMCw0LjMuMyw2LjUuOCwyLjcuNiw1LjIsMS42LDcuNCwzLjFzNCwzLjYsNS40LDYuMywyLjEsNi4xLDIuMSwxMC40LS43LDcuMy0yLjEsMTAiLz4KICA8L2c+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjIwMyAyMS44IDIxOS4zIDY3LjQgMjE5LjYgNjcuNCAyMzYuMSAyMS44IDI0Ny41IDIxLjggMjIzLjcgODEuMSAyMTQuNiA4MS4xIDE5MS4yIDIxLjggMjAzIDIxLjgiLz4KICA8cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMjkyLjQgMjEuOCAyOTIuNCAzMSAyNjMuNyAzMSAyNjMuNyA0Ni4xIDI5MC45IDQ2LjEgMjkwLjkgNTQuOSAyNjMuNyA1NC45IDI2My43IDcxLjcgMjkzLjkgNzEuNyAyOTMuOSA4MS4xIDI1My4yIDgxLjEgMjUzLjIgMjEuOCAyOTIuNCAyMS44Ii8+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjMxOC4yIDIxLjggMzQ1LjcgNjYuMiAzNDUuOSA2Ni4yIDM0NS45IDIxLjggMzU2LjQgMjEuOCAzNTYuNCA4MS4xIDM0MyA4MS4xIDMxNC45IDM1LjMgMzE0LjggMzUuMyAzMTQuOCA4MS4xIDMwNC4yIDgxLjEgMzA0LjIgMjEuOCAzMTguMiAyMS44Ii8+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjQ3NS45IDIxLjggNDc1LjkgMzEgNDQ3LjIgMzEgNDQ3LjIgNDYuMSA0NzQuNCA0Ni4xIDQ3NC40IDU0LjkgNDQ3LjIgNTQuOSA0NDcuMiA3MS43IDQ3Ny41IDcxLjcgNDc3LjUgODEuMSA0MzYuNyA4MS4xIDQzNi43IDIxLjggNDc1LjkgMjEuOCIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTUwOC4zLDIxLjhjMi44LDAsNS41LjMsOC4xLjlzNSwxLjUsNywyLjksMy43LDMuMSw0LjksNS4zYzEuMiwyLjIsMS44LDQuOCwxLjgsNy45cy0xLjIsNy44LTMuNiwxMC41Yy0yLjQsMi43LTUuNyw0LjUtOS45LDUuNWwxNS44LDI2LjNoLTEyLjdsLTEzLjctMjUuMWgtNy43djI1LjFoLTEwLjVWMjEuOGgyMC42LS4xWk01MTEuNCw0N2MxLjUtLjIsMi45LS42LDQuMS0xLjMsMS4yLS42LDIuMi0xLjUsMy0yLjZzMS4yLTIuNiwxLjItNC40LS40LTIuOS0xLjEtNGMtLjctMS0xLjctMS45LTIuOC0yLjUtMS4xLS42LTIuNC0xLTMuOC0xLjMtMS40LS4yLTIuOC0uMy00LjEtLjNoLTkuNXYxNi42aDguNmMxLjUsMCwzLS4xLDQuNS0uMyIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU2NS45LDMwLjVjLTItMS00LjEtMS41LTYuMi0xLjVzLTIuNS4xLTMuNy41Yy0xLjIuMy0yLjMuOC0zLjMsMS40cy0xLjgsMS41LTIuNSwyLjVjLS42LDEtMSwyLjMtMSwzLjdzLjMsMi41LjgsMy40LDEuMywxLjgsMi4zLDIuNGMxLC43LDIuMiwxLjMsMy42LDEuOCwxLjQuNSwyLjksMSw0LjYsMS41LDEuOS42LDMuOSwxLjMsNS45LDIuMXMzLjksMS44LDUuNiwzLjFjMS43LDEuMywzLjEsMi45LDQuMiw0LjgsMS4xLDIsMS42LDQuNCwxLjYsNy4zcy0uNiw2LTEuOCw4LjNjLTEuMiwyLjQtMi43LDQuMy00LjcsNS45cy00LjIsMi43LTYuOSwzLjUtNS40LDEuMi04LjMsMS4yLTcuNi0uNy0xMS4zLTIuMS02LjctMy41LTktNi4zbDcuNS03YzEuNSwyLDMuNCwzLjYsNS44LDQuOHM0LjgsMS44LDcuMiwxLjgsMi41LS4yLDMuOC0uNSwyLjQtLjgsMy41LTEuNmMxLS43LDEuOS0xLjYsMi41LTIuN3MxLTIuNCwxLTQuMS0uNC0yLjktMS4xLTMuOWMtLjctMS0xLjctMS45LTIuOS0yLjdzLTIuNy0xLjQtNC4zLTJsLTUuMy0xLjhjLTEuOC0uNi0zLjYtMS4yLTUuNC0ycy0zLjQtMS44LTQuOC0zLjFjLTEuNC0xLjMtMi42LTIuOS0zLjUtNC43cy0xLjMtNC4yLTEuMy03LC42LTUuNiwxLjktNy44YzEuMy0yLjIsMi45LTQsNC45LTUuNHM0LjMtMi41LDctMy4yYzIuNi0uNyw1LjItMSw3LjktMXM2LjEuNSw5LjIsMS42YzMuMSwxLjEsNS44LDIuNiw4LjEsNC44bC02LjksNy41Yy0xLjEtMS41LTIuNy0yLjctNC43LTMuNiIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTM5OC4xLDQ5LjR2OS4zaDE3Ljl2My45Yy0uNywxLjYtMS43LDMuMS0zLjEsNC43aDBjLTEuNSwxLjctMy42LDMuMS02LjMsNC4zLTIuNywxLjItNS42LDEuOC04LjgsMS44cy02LS42LTguNS0xLjctNC43LTIuNy02LjUtNC42LTMuMi00LjItNC4xLTYuOWMtMS0yLjYtMS41LTUuNS0xLjUtOC41di0uM2MwLTMuMS41LTUuOSwxLjUtOC41czIuNC00LjksNC4xLTYuOWMxLjgtMiw0LTMuNSw2LjUtNC42czUuNC0xLjcsOC41LTEuNyw2LjEuNiw4LjgsMS44LDQuOCwyLjYsNi4zLDQuM2w3LjMtNy45Yy0yLjQtMi4yLTUuNi00LTkuNS01LjRzLTguMy0yLTEzLTItOC44LjctMTIuNywyLjItNy4zLDMuNS0xMC4yLDYuMmMtMi45LDIuNy01LjEsNS45LTYuOCw5LjgtMS42LDMuOC0yLjQsOC0yLjUsMTIuNmgwdi42YzAsNC43LjgsOSwyLjUsMTIuOCwxLjYsMy44LDMuOSw3LjEsNi44LDkuOHM2LjMsNC43LDEwLjIsNi4yYzMuOSwxLjQsOC4xLDIuMiwxMi43LDIuMnM5LjEtLjcsMTMtMi4xYzItLjcsMy44LTEuNSw1LjQtMi40djMuNWg5LjN2LTMyLjJoLTI3LjJsLS4xLS4zWiIvPgo8L3N2Zz4=" class="logo" alt="Advengers"/><span class="sec-tag">COMPETITIVE INTELLIGENCE · AHREFS</span></div>
-  <div style="padding:4px 56px 0">
+  <div style="padding:2px 56px 0">
     <div class="sl-title anim" style="color:#fff">Ρυθμός Ανάπτυξης Referring Domains</div>
-    <div class="sl-sub anim d1" style="color:rgba(255,255,255,.4)">Νέα RDs ανά μήνα · Οκτ 2025 – Φεβ 2026 · Ahrefs Live Data · 18 Μαρτίου 2026</div>
+    <div class="sl-sub anim d1" style="color:rgba(255,255,255,.4)">Νέα Referring Domains ανά μήνα · Οκτ 2025 – Φεβ 2026 · Ahrefs Live Data · Μάρτιος 2026</div>
   </div>
 
-  <div class="rd-wrap">
+  <div class="rd2-wrap">
 
-    <!-- Bar chart column -->
-    <div class="rd-chart-col">
+    <!-- Legend -->
+    <div class="rd2-legend anim d1">
+      <span class="rdl-item"><span class="rdl-dot" style="background:#C4F400"></span>stoiximaview.gr</span>
+      <span class="rdl-item"><span class="rdl-dot" style="background:#5858F9"></span>betarades.gr</span>
+      <span class="rdl-item"><span class="rdl-dot" style="background:#FF6B6B"></span>foxbet.gr</span>
+      <span class="rdl-item"><span class="rdl-dot" style="background:#FF9A3C"></span>kingbet.net</span>
+      <span style="margin-left:auto;font-size:10px;color:rgba(255,255,255,.25)">▓ θετικά &nbsp; ░ αρνητικά (απώλεια RDs)</span>
+    </div>
 
-      <!-- Legend -->
-      <div class="rd-legend anim d1">
-        <span class="rdl-item"><span class="rdl-dot" style="background:#C4F400"></span>stoiximaview.gr</span>
-        <span class="rdl-item"><span class="rdl-dot" style="background:#5858F9"></span>betarades.gr</span>
-        <span class="rdl-item"><span class="rdl-dot" style="background:#FF6B6B"></span>foxbet.gr</span>
-        <span class="rdl-item"><span class="rdl-dot" style="background:#FF9A3C"></span>kingbet.net</span>
+    <!-- SVG Bar Chart -->
+    <div class="rd2-chart-box anim d2">
+      <svg viewBox="0 0 720 200" width="100%" height="100%" style="overflow:visible">
+<line x1="38" y1="126.0" x2="712" y2="126.0" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+<text x="34" y="126.0" font-size="8" fill="rgba(255,255,255,.25)" text-anchor="end" dominant-baseline="middle">+300</text>
+<line x1="38" y1="90.0" x2="712" y2="90.0" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+<text x="34" y="90.0" font-size="8" fill="rgba(255,255,255,.25)" text-anchor="end" dominant-baseline="middle">+600</text>
+<line x1="38" y1="54.0" x2="712" y2="54.0" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+<text x="34" y="54.0" font-size="8" fill="rgba(255,255,255,.25)" text-anchor="end" dominant-baseline="middle">+900</text>
+<line x1="38" y1="162" x2="712" y2="162" stroke="rgba(255,255,255,.28)" stroke-width="1"/>
+<text x="34" y="162" font-size="8" fill="rgba(255,255,255,.3)" text-anchor="end" dominant-baseline="middle">0</text>
+<rect x="38" y="157.2" width="22" height="4.8" rx="2" fill="#C4F400" opacity="0.92"/>
+<rect x="63" y="135.6" width="22" height="26.4" rx="2" fill="#5858F9" opacity="0.92"/>
+<text x="74.0" y="132.6" font-size="8" fill="#5858F9" text-anchor="middle" font-weight="700">+220</text>
+<rect x="88" y="122.8" width="22" height="39.2" rx="2" fill="#FF6B6B" opacity="0.92"/>
+<text x="99.0" y="119.8" font-size="8" fill="#FF6B6B" text-anchor="middle" font-weight="700">+327</text>
+<rect x="113" y="123.7" width="22" height="38.3" rx="2" fill="#FF9A3C" opacity="0.92"/>
+<text x="124.0" y="120.7" font-size="8" fill="#FF9A3C" text-anchor="middle" font-weight="700">+319</text>
+<text x="75.5" y="198" font-size="10" fill="rgba(255,255,255,.42)" text-anchor="middle">Οκτ '25</text>
+<rect x="182" y="163.0" width="22" height="2.0" rx="2" fill="#C4F400" opacity="0.3"/>
+<rect x="207" y="145.4" width="22" height="16.6" rx="2" fill="#5858F9" opacity="0.92"/>
+<text x="218.0" y="142.4" font-size="8" fill="#5858F9" text-anchor="middle" font-weight="700">+138</text>
+<rect x="232" y="136.3" width="22" height="25.7" rx="2" fill="#FF6B6B" opacity="0.92"/>
+<text x="243.0" y="133.3" font-size="8" fill="#FF6B6B" text-anchor="middle" font-weight="700">+214</text>
+<rect x="257" y="129.0" width="22" height="33.0" rx="2" fill="#FF9A3C" opacity="0.92"/>
+<text x="268.0" y="126.0" font-size="8" fill="#FF9A3C" text-anchor="middle" font-weight="700">+275</text>
+<text x="219.5" y="198" font-size="10" fill="rgba(255,255,255,.42)" text-anchor="middle">Νοε '25</text>
+<rect x="326" y="163.0" width="22" height="2.5" rx="2" fill="#C4F400" opacity="0.3"/>
+<rect x="351" y="96.0" width="22" height="66.0" rx="2" fill="#5858F9" opacity="0.92"/>
+<text x="362.0" y="93.0" font-size="8" fill="#5858F9" text-anchor="middle" font-weight="700">+550</text>
+<rect x="376" y="114.5" width="22" height="47.5" rx="2" fill="#FF6B6B" opacity="0.92"/>
+<text x="387.0" y="111.5" font-size="8" fill="#FF6B6B" text-anchor="middle" font-weight="700">+396</text>
+<rect x="401" y="20.4" width="22" height="141.6" rx="2" fill="#FF9A3C" opacity="0.92"/>
+<text x="412.0" y="17.4" font-size="8" fill="#FF9A3C" text-anchor="middle" font-weight="700">+1,180</text>
+<text x="363.5" y="198" font-size="10" fill="rgba(255,255,255,.42)" text-anchor="middle">Δεκ '25</text>
+<rect x="470" y="159.4" width="22" height="2.6" rx="2" fill="#C4F400" opacity="0.92"/>
+<rect x="495" y="102.0" width="22" height="60.0" rx="2" fill="#5858F9" opacity="0.92"/>
+<text x="506.0" y="99.0" font-size="8" fill="#5858F9" text-anchor="middle" font-weight="700">+500</text>
+<rect x="520" y="100.2" width="22" height="61.8" rx="2" fill="#FF6B6B" opacity="0.92"/>
+<text x="531.0" y="97.2" font-size="8" fill="#FF6B6B" text-anchor="middle" font-weight="700">+515</text>
+<rect x="545" y="127.9" width="22" height="34.1" rx="2" fill="#FF9A3C" opacity="0.92"/>
+<text x="556.0" y="124.9" font-size="8" fill="#FF9A3C" text-anchor="middle" font-weight="700">+284</text>
+<text x="507.5" y="198" font-size="10" fill="rgba(255,255,255,.42)" text-anchor="middle">Ιαν '26</text>
+<rect x="614" y="163.0" width="22" height="8.1" rx="2" fill="#C4F400" opacity="0.3"/>
+<rect x="639" y="163.0" width="22" height="33.7" rx="2" fill="#5858F9" opacity="0.3"/>
+<rect x="664" y="163.0" width="22" height="22.0" rx="2" fill="#FF6B6B" opacity="0.3"/>
+<rect x="689" y="163.0" width="22" height="16.9" rx="2" fill="#FF9A3C" opacity="0.3"/>
+<text x="651.5" y="198" font-size="10" fill="rgba(255,255,255,.42)" text-anchor="middle">Φεβ '26</text>
+<text x="412.0" y="15.4" font-size="9" fill="#FFB96A" text-anchor="middle" font-weight="800">+1,180</text>
+</svg>
+    </div>
+
+    <!-- Data Table -->
+    <div class="anim d3">
+      <table class="rd-tbl"><thead><tr><th>Ανταγωνιστής</th><th>DR</th><th>Οκτ '25</th><th>Νοε '25</th><th>Δεκ '25</th><th>Ιαν '26</th><th>Φεβ '26</th><th>Avg / μήνα</th></tr></thead><tbody><tr class="rd-tbl-me"><td><span class="rdtbl-dot" style="background:#C4F400"></span>stoiximaview.gr&nbsp;<span class="rd-you">YOU</span></td><td class="rdtc-dr">13</td><td class="rdtc-pos">+40</td><td class="rdtc-neg">-5</td><td class="rdtc-neg">-14</td><td class="rdtc-pos">+22</td><td class="rdtc-neg">-45</td><td class="rdtc-avg-bad">~-0</td></tr><tr class=""><td><span class="rdtbl-dot" style="background:#5858F9"></span>betarades.gr</td><td class="rdtc-dr">37</td><td class="rdtc-pos">+220</td><td class="rdtc-pos">+138</td><td class="rdtc-hipos">+550</td><td class="rdtc-hipos">+500</td><td class="rdtc-neg">-187</td><td class="rdtc-avg-good">+244</td></tr><tr class=""><td><span class="rdtbl-dot" style="background:#FF6B6B"></span>foxbet.gr</td><td class="rdtc-dr">37</td><td class="rdtc-hipos">+327</td><td class="rdtc-pos">+214</td><td class="rdtc-hipos">+396</td><td class="rdtc-hipos">+515</td><td class="rdtc-neg">-122</td><td class="rdtc-avg-good">+266</td></tr><tr class=""><td><span class="rdtbl-dot" style="background:#FF9A3C"></span>kingbet.net</td><td class="rdtc-dr">46</td><td class="rdtc-hipos">+319</td><td class="rdtc-pos">+275</td><td class="rdtc-hipos">+1,180</td><td class="rdtc-pos">+284</td><td class="rdtc-neg">-94</td><td class="rdtc-avg-good">+393</td></tr></tbody></table>
+    </div>
+
+    <!-- Stat chips row -->
+    <div class="rd2-stats anim d4">
+      <div class="rd2-stat" style="border-color:rgba(255,154,60,.3)">
+        <div><div class="rd2-sv" style="color:#FF9A3C">+1,180</div><div class="rd2-sl">Peak · kingbet Δεκ '25</div></div>
       </div>
-
-      <!-- Grouped bar chart — max positive = 1180 → 200px; max negative = 187 → 52px -->
-      <div class="rd-chart anim d2">
-
-        <!-- Οκτ '25: SV=+40, BR=+220, FB=+327, KB=+319 -->
-        <div class="rdm">
-          <div class="rdm-pos">
-            <div class="rdb" style="height:7px;background:#C4F400"></div>
-            <div class="rdb" style="height:37px;background:#5858F9"></div>
-            <div class="rdb" style="height:55px;background:#FF6B6B"></div>
-            <div class="rdb" style="height:54px;background:#FF9A3C"></div>
-          </div>
-          <div class="rdm-base"></div>
-          <div class="rdm-neg">
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-          </div>
-          <div class="rdm-lbl">Οκτ '25</div>
-        </div>
-
-        <!-- Νοε '25: SV=-5, BR=+138, FB=+214, KB=+275 -->
-        <div class="rdm">
-          <div class="rdm-pos">
-            <div class="rdb" style="height:0;background:#C4F400"></div>
-            <div class="rdb" style="height:23px;background:#5858F9"></div>
-            <div class="rdb" style="height:36px;background:#FF6B6B"></div>
-            <div class="rdb" style="height:47px;background:#FF9A3C"></div>
-          </div>
-          <div class="rdm-base"></div>
-          <div class="rdm-neg">
-            <div class="rdb-n" style="height:1px;background:rgba(196,244,0,.35)"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-          </div>
-          <div class="rdm-lbl">Νοε '25</div>
-        </div>
-
-        <!-- Δεκ '25: SV=-14, BR=+550, FB=+396, KB=+1180 (peak) -->
-        <div class="rdm">
-          <div class="rdm-pos">
-            <div class="rdb" style="height:0;background:#C4F400"></div>
-            <div class="rdb" style="height:93px;background:#5858F9"></div>
-            <div class="rdb" style="height:67px;background:#FF6B6B"></div>
-            <div class="rdb" style="height:200px;background:linear-gradient(to top,#FF9A3C,#FFB96A);position:relative">
-              <span class="rd-peak-label">+1,180</span>
-            </div>
-          </div>
-          <div class="rdm-base"></div>
-          <div class="rdm-neg">
-            <div class="rdb-n" style="height:4px;background:rgba(196,244,0,.35)"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-          </div>
-          <div class="rdm-lbl">Δεκ '25</div>
-        </div>
-
-        <!-- Ιαν '26: SV=+22, BR=+500, FB=+515, KB=+284 -->
-        <div class="rdm">
-          <div class="rdm-pos">
-            <div class="rdb" style="height:4px;background:#C4F400"></div>
-            <div class="rdb" style="height:85px;background:#5858F9"></div>
-            <div class="rdb" style="height:87px;background:#FF6B6B"></div>
-            <div class="rdb" style="height:48px;background:#FF9A3C"></div>
-          </div>
-          <div class="rdm-base"></div>
-          <div class="rdm-neg">
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-            <div class="rdb-n" style="height:0"></div>
-          </div>
-          <div class="rdm-lbl">Ιαν '26</div>
-        </div>
-
-        <!-- Φεβ '26: SV=-45, BR=-187, FB=-122, KB=-94 -->
-        <div class="rdm">
-          <div class="rdm-pos">
-            <div class="rdb" style="height:0;background:#C4F400"></div>
-            <div class="rdb" style="height:0;background:#5858F9"></div>
-            <div class="rdb" style="height:0;background:#FF6B6B"></div>
-            <div class="rdb" style="height:0;background:#FF9A3C"></div>
-          </div>
-          <div class="rdm-base"></div>
-          <div class="rdm-neg">
-            <div class="rdb-n" style="height:12px;background:rgba(196,244,0,.35)"></div>
-            <div class="rdb-n" style="height:52px;background:rgba(88,88,249,.35)"></div>
-            <div class="rdb-n" style="height:34px;background:rgba(255,107,107,.35)"></div>
-            <div class="rdb-n" style="height:25px;background:rgba(255,154,60,.35)"></div>
-          </div>
-          <div class="rdm-lbl">Φεβ '26</div>
-        </div>
-
-      </div><!-- /rd-chart -->
-    </div><!-- /rd-chart-col -->
-
-    <!-- Right: KPI callouts -->
-    <div class="rd-kpis">
-      <div class="rd-kpi anim d2" style="border-color:rgba(255,154,60,.3)">
-        <div class="rd-kpi-lbl">Peak μήνας</div>
-        <div class="rd-kpi-val" style="color:#FF9A3C">+1,180</div>
-        <div class="rd-kpi-sub">kingbet · Δεκ '25</div>
+      <div class="rd2-stat" style="border-color:rgba(88,88,249,.3)">
+        <div><div class="rd2-sv" style="color:var(--blue-l)">~+300</div><div class="rd2-sl">Avg ανταγωνιστών / μήνα</div></div>
       </div>
-      <div class="rd-kpi anim d3" style="border-color:rgba(88,88,249,.3)">
-        <div class="rd-kpi-lbl">Ανταγωνιστές avg</div>
-        <div class="rd-kpi-val" style="color:var(--blue-l)">~+400</div>
-        <div class="rd-kpi-sub">RDs / μήνα</div>
+      <div class="rd2-stat" style="border-color:rgba(255,107,107,.3)">
+        <div><div class="rd2-sv" style="color:#FF7A7A">~0</div><div class="rd2-sl">stoiximaview avg / μήνα</div></div>
       </div>
-      <div class="rd-kpi anim d4" style="border-color:rgba(255,107,107,.3)">
-        <div class="rd-kpi-lbl">stoiximaview avg</div>
-        <div class="rd-kpi-val" style="color:#FF6B6B">~0</div>
-        <div class="rd-kpi-sub">RDs / μήνα</div>
+      <div class="rd2-stat" style="border-color:rgba(196,244,0,.3)">
+        <div><div class="rd2-sv" style="color:var(--lime)">+35</div><div class="rd2-sl">Στόχος μετά το Plan</div></div>
       </div>
-      <div class="rd-kpi anim d5" style="border-color:rgba(196,244,0,.25)">
-        <div class="rd-kpi-lbl">Στόχος μετά Plan</div>
-        <div class="rd-kpi-val" style="color:var(--lime)">+35</div>
-        <div class="rd-kpi-sub">RDs / μήνα</div>
-      </div>
-    </div><!-- /rd-kpis -->
+    </div>
 
-  </div><!-- /rd-wrap -->
+  </div><!-- /rd2-wrap -->
 </div>
 
 <!-- ═══ SLIDE 3: CURRENT STATE ═══ -->
