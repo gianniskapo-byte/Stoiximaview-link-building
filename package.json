@@ -1,0 +1,12 @@
+{
+  "name": "advengers-presentation",
+  "version": "1.0.0",
+  "description": "StoiximaView Link Building Plan 2026 — Interactive Presentation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
