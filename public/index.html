@@ -181,18 +181,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:var
 .gap-pill{display:inline-block;background:#ffe5e5;color:#c00;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px}
 
 /* ── STRATEGY PILLARS ── */
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:14px 56px 30px;flex:1}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:14px 56px 28px;flex:1}
 .pillar{
-  background:var(--dark-m);border-radius:16px;
-  padding:26px 24px;border-left:4px solid var(--lime);
+  background:var(--dark-m);border-radius:18px;
+  padding:28px 26px 22px;border-left:4px solid var(--lime);
   position:relative;overflow:hidden;
   transition:transform .3s ease,box-shadow .3s ease;
+  display:flex;flex-direction:column;justify-content:space-between;
 }
 .pillar:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4);animation:glowPulse 1.5s ease 1}
-.pillar .pnum{position:absolute;right:18px;top:14px;font-size:64px;font-weight:900;color:rgba(255,255,255,.04);line-height:1}
-.pillar .picon{font-size:30px;margin-bottom:12px;display:block}
-.pillar .ptitle{color:var(--lime);font-size:15px;font-weight:800;margin-bottom:8px}
-.pillar .pbody{color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
+.pillar .pnum{position:absolute;right:-8px;bottom:-18px;font-size:110px;font-weight:900;color:rgba(255,255,255,.035);line-height:1;pointer-events:none;user-select:none}
+.pillar-top{flex:1}
+.pillar .picon{font-size:40px;margin-bottom:14px;display:block;line-height:1}
+.pillar .ptitle{color:var(--lime);font-size:16px;font-weight:800;margin-bottom:10px;letter-spacing:-.2px}
+.pillar .pbody{color:rgba(255,255,255,.72);font-size:13px;line-height:1.65}
+.pillar-foot{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ptag{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5)}
+.ptag.accent{background:rgba(196,244,0,.12);color:var(--lime)}
+.ptag.blue{background:rgba(88,88,249,.2);color:#9090ff}
 
 /* ── PLAN CHIPS ── */
 .plan-chips{display:flex;gap:14px;padding:12px 56px 16px}
@@ -388,10 +394,58 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:var
   <div class="sl-hdr on-dark"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iRGVzaWduIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1OTUuMiAxMDIuOCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogIzU4NThmOTsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGc+CiAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01Mi42LDIxLjhsMjUuNSw1OS4zaC0xMi4xbC01LjUtMTMuNmgtMjUuN2wtNS40LDEzLjZoLTExLjhsMjUuOC01OS4yaDkuMWwuMS0uMVpNNDcuNywzNC4zbC05LjMsMjQuMWgxOC40cy05LjEtMjQuMS05LjEtMjQuMVoiLz4KICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4Ni4zLDM3LjRjLTEuOS0zLjgtNC41LTYuOC03LjYtOS4xcy02LjYtNC0xMC41LTUtNy44LTEuNS0xMS42LTEuNWgtNzIuNXY1OS4yaDcyLjVjMy45LDAsNy43LS42LDExLjYtMS43LDMuOS0xLjEsNy40LTIuOSwxMC41LTUuM3M1LjctNS41LDcuNi05LjJjMS45LTMuNywyLjktOC4yLDIuOS0xMy40cy0xLTEwLjItMi45LTE0TTEwMy4zLDcxLjhoLTguOFYzMC44aDguOGMyLjcsMCw1LjUuMyw4LjIuOCwyLjcuNiw1LjIsMS42LDcuNCwzLjEsMi4yLDEuNSw0LDMuNiw1LjQsNi4zczIuMSw2LjEsMi4xLDEwLjQtLjcsNy4zLTIuMSwxMGMtMS40LDIuNy0zLjIsNC43LTUuNCw2LjItMi4yLDEuNS00LjcsMi42LTcuNCwzLjMtMi43LjYtNS41LDEtOC4yLDFNMTI5LjYsNzEuOGMyLTIsMy43LTQuMyw1LjEtNywxLjktMy43LDIuOS04LjIsMi45LTEzLjRzLTEtMTAuMi0yLjktMTRjLTEuMy0yLjUtMi45LTQuNy00LjctNi41LDIuNiwwLDUuMy4zLDcuOS44LDIuNy42LDUuMiwxLjYsNy40LDMuMXM0LDMuNiw1LjQsNi4zLDIuMSw2LjEsMi4xLDEwLjQtLjcsNy4zLTIuMSwxMGMtMS40LDIuNy0zLjIsNC43LTUuNCw2LjJzLTQuNywyLjYtNy40LDMuM2MtMi43LjYtNS41LDEtOC4yLDFoLS4xdi0uMlpNMTc1LjgsNjEuNGMtMS40LDIuNi0zLjIsNC43LTUuNCw2LjJzLTQuNywyLjYtNy40LDMuM2MtMi4zLjUtNC42LjgtNi45LjksMi0yLDMuNy00LjMsNS4xLTcsMS45LTMuNywyLjktOC4yLDIuOS0xMy40cy0xLTEwLjItMi45LTE0Yy0xLjMtMi41LTIuOS00LjYtNC43LTYuNSwyLjIsMCw0LjMuMyw2LjUuOCwyLjcuNiw1LjIsMS42LDcuNCwzLjFzNCwzLjYsNS40LDYuMywyLjEsNi4xLDIuMSwxMC40LS43LDcuMy0yLjEsMTAiLz4KICA8L2c+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjIwMyAyMS44IDIxOS4zIDY3LjQgMjE5LjYgNjcuNCAyMzYuMSAyMS44IDI0Ny41IDIxLjggMjIzLjcgODEuMSAyMTQuNiA4MS4xIDE5MS4yIDIxLjggMjAzIDIxLjgiLz4KICA8cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMjkyLjQgMjEuOCAyOTIuNCAzMSAyNjMuNyAzMSAyNjMuNyA0Ni4xIDI5MC45IDQ2LjEgMjkwLjkgNTQuOSAyNjMuNyA1NC45IDI2My43IDcxLjcgMjkzLjkgNzEuNyAyOTMuOSA4MS4xIDI1My4yIDgxLjEgMjUzLjIgMjEuOCAyOTIuNCAyMS44Ii8+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjMxOC4yIDIxLjggMzQ1LjcgNjYuMiAzNDUuOSA2Ni4yIDM0NS45IDIxLjggMzU2LjQgMjEuOCAzNTYuNCA4MS4xIDM0MyA4MS4xIDMxNC45IDM1LjMgMzE0LjggMzUuMyAzMTQuOCA4MS4xIDMwNC4yIDgxLjEgMzA0LjIgMjEuOCAzMTguMiAyMS44Ii8+CiAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjQ3NS45IDIxLjggNDc1LjkgMzEgNDQ3LjIgMzEgNDQ3LjIgNDYuMSA0NzQuNCA0Ni4xIDQ3NC40IDU0LjkgNDQ3LjIgNTQuOSA0NDcuMiA3MS43IDQ3Ny41IDcxLjcgNDc3LjUgODEuMSA0MzYuNyA4MS4xIDQzNi43IDIxLjggNDc1LjkgMjEuOCIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTUwOC4zLDIxLjhjMi44LDAsNS41LjMsOC4xLjlzNSwxLjUsNywyLjksMy43LDMuMSw0LjksNS4zYzEuMiwyLjIsMS44LDQuOCwxLjgsNy45cy0xLjIsNy44LTMuNiwxMC41Yy0yLjQsMi43LTUuNyw0LjUtOS45LDUuNWwxNS44LDI2LjNoLTEyLjdsLTEzLjctMjUuMWgtNy43djI1LjFoLTEwLjVWMjEuOGgyMC42LS4xWk01MTEuNCw0N2MxLjUtLjIsMi45LS42LDQuMS0xLjMsMS4yLS42LDIuMi0xLjUsMy0yLjZzMS4yLTIuNiwxLjItNC40LS40LTIuOS0xLjEtNGMtLjctMS0xLjctMS45LTIuOC0yLjUtMS4xLS42LTIuNC0xLTMuOC0xLjMtMS40LS4yLTIuOC0uMy00LjEtLjNoLTkuNXYxNi42aDguNmMxLjUsMCwzLS4xLDQuNS0uMyIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTU2NS45LDMwLjVjLTItMS00LjEtMS41LTYuMi0xLjVzLTIuNS4xLTMuNy41Yy0xLjIuMy0yLjMuOC0zLjMsMS40cy0xLjgsMS41LTIuNSwyLjVjLS42LDEtMSwyLjMtMSwzLjdzLjMsMi41LjgsMy40LDEuMywxLjgsMi4zLDIuNGMxLC43LDIuMiwxLjMsMy42LDEuOCwxLjQuNSwyLjksMSw0LjYsMS41LDEuOS42LDMuOSwxLjMsNS45LDIuMXMzLjksMS44LDUuNiwzLjFjMS43LDEuMywzLjEsMi45LDQuMiw0LjgsMS4xLDIsMS42LDQuNCwxLjYsNy4zcy0uNiw2LTEuOCw4LjNjLTEuMiwyLjQtMi43LDQuMy00LjcsNS45cy00LjIsMi43LTYuOSwzLjUtNS40LDEuMi04LjMsMS4yLTcuNi0uNy0xMS4zLTIuMS02LjctMy41LTktNi4zbDcuNS03YzEuNSwyLDMuNCwzLjYsNS44LDQuOHM0LjgsMS44LDcuMiwxLjgsMi41LS4yLDMuOC0uNSwyLjQtLjgsMy41LTEuNmMxLS43LDEuOS0xLjYsMi41LTIuN3MxLTIuNCwxLTQuMS0uNC0yLjktMS4xLTMuOWMtLjctMS0xLjctMS45LTIuOS0yLjdzLTIuNy0xLjQtNC4zLTJsLTUuMy0xLjhjLTEuOC0uNi0zLjYtMS4yLTUuNC0ycy0zLjQtMS44LTQuOC0zLjFjLTEuNC0xLjMtMi42LTIuOS0zLjUtNC43cy0xLjMtNC4yLTEuMy03LC42LTUuNiwxLjktNy44YzEuMy0yLjIsMi45LTQsNC45LTUuNHM0LjMtMi41LDctMy4yYzIuNi0uNyw1LjItMSw3LjktMXM2LjEuNSw5LjIsMS42YzMuMSwxLjEsNS44LDIuNiw4LjEsNC44bC02LjksNy41Yy0xLjEtMS41LTIuNy0yLjctNC43LTMuNiIvPgogIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTM5OC4xLDQ5LjR2OS4zaDE3Ljl2My45Yy0uNywxLjYtMS43LDMuMS0zLjEsNC43aDBjLTEuNSwxLjctMy42LDMuMS02LjMsNC4zLTIuNywxLjItNS42LDEuOC04LjgsMS44cy02LS42LTguNS0xLjctNC43LTIuNy02LjUtNC42LTMuMi00LjItNC4xLTYuOWMtMS0yLjYtMS41LTUuNS0xLjUtOC41di0uM2MwLTMuMS41LTUuOSwxLjUtOC41czIuNC00LjksNC4xLTYuOWMxLjgtMiw0LTMuNSw2LjUtNC42czUuNC0xLjcsOC41LTEuNyw2LjEuNiw4LjgsMS44LDQuOCwyLjYsNi4zLDQuM2w3LjMtNy45Yy0yLjQtMi4yLTUuNi00LTkuNS01LjRzLTguMy0yLTEzLTItOC44LjctMTIuNywyLjItNy4zLDMuNS0xMC4yLDYuMmMtMi45LDIuNy01LjEsNS45LTYuOCw5LjgtMS42LDMuOC0yLjQsOC0yLjUsMTIuNmgwdi42YzAsNC43LjgsOSwyLjUsMTIuOCwxLjYsMy44LDMuOSw3LjEsNi44LDkuOHM2LjMsNC43LDEwLjIsNi4yYzMuOSwxLjQsOC4xLDIuMiwxMi43LDIuMnM5LjEtLjcsMTMtMi4xYzItLjcsMy44LTEuNSw1LjQtMi40djMuNWg5LjN2LTMyLjJoLTI3LjJsLS4xLS4zWiIvPgo8L3N2Zz4=" class="logo" alt="Advengers"/><span class="sec-tag">ΣΤΡΑΤΗΓΙΚΗ</span></div>
   <div style="padding:6px 56px 0"><div class="sl-title anim" style="color:#fff">Η Προσέγγισή μας</div><div class="sl-sub anim d1" style="color:rgba(255,255,255,.45)">4 βασικοί πυλώνες για μέγιστο ROI</div></div>
   <div class="pillars">
-    <div class="pillar anim d1 scale"><span class="pnum">01</span><span class="picon">🎯</span><div class="ptitle">Ποσότητα vs Ποιότητα</div><div class="pbody">Εστίαση σε DR 13–20 sites: περισσότερα links για τον ίδιο budget. Στόχος: γρήγορη αύξηση Referring Domains.</div></div>
-    <div class="pillar anim d2 scale"><span class="pnum">02</span><span class="picon">🎰</span><div class="ptitle">Casino 70%</div><div class="pbody">9–12 links με anchor texts για casino, live casino, online casino Ελλάδα — τα πιο ανταγωνιστικά keywords.</div></div>
-    <div class="pillar anim d3 scale" style="border-left-color:var(--blue-l)"><span class="pnum">03</span><span class="picon">⚽</span><div class="ptitle" style="color:var(--blue-p)">Μουντιάλ 2026 — 30%</div><div class="pbody">4–5 links σε sports sites ενόψει World Cup 11 Ιουν – 19 Ιουλ. Εποχιακό traffic boost + DR building.</div></div>
-    <div class="pillar anim d4 scale"><span class="pnum">04</span><span class="picon">💸</span><div class="ptitle">Bazoom Live Discounts</div><div class="pbody">Live publisher εκπτώσεις έως <strong style="color:var(--lime)">-79%</strong> — DR 25–31 sites στην τιμή DR 13–20. Time-limited deals!</div></div>
+    <div class="pillar anim d1 scale">
+      <span class="pnum">01</span>
+      <div class="pillar-top">
+        <span class="picon">🎯</span>
+        <div class="ptitle">Ποσότητα vs Ποιότητα</div>
+        <div class="pbody">Εστίαση σε DR 13–20 sites: περισσότερα links για τον ίδιο budget. Στόχος: γρήγορη αύξηση Referring Domains σε σύντομο χρόνο.</div>
+      </div>
+      <div class="pillar-foot">
+        <span class="ptag accent">DR 13–20 targets</span>
+        <span class="ptag">16–17 links/μήνα</span>
+        <span class="ptag">↑ Ref. Domains</span>
+      </div>
+    </div>
+    <div class="pillar anim d2 scale">
+      <span class="pnum">02</span>
+      <div class="pillar-top">
+        <span class="picon">🎰</span>
+        <div class="ptitle">Casino 70%</div>
+        <div class="pbody">9–12 links με anchor texts για casino, live casino, online casino Ελλάδα — τα πιο ανταγωνιστικά keywords για μέγιστη SEO ώθηση.</div>
+      </div>
+      <div class="pillar-foot">
+        <span class="ptag accent">70% του budget</span>
+        <span class="ptag">9–12 links</span>
+        <span class="ptag">Competitive anchors</span>
+      </div>
+    </div>
+    <div class="pillar anim d3 scale" style="border-left-color:var(--blue-l)">
+      <span class="pnum">03</span>
+      <div class="pillar-top">
+        <span class="picon">⚽</span>
+        <div class="ptitle" style="color:var(--blue-p)">Μουντιάλ 2026 — 30%</div>
+        <div class="pbody">4–5 links σε sports sites ενόψει World Cup 11 Ιουν – 19 Ιουλ. Εποχιακό traffic boost και DR building ταυτόχρονα.</div>
+      </div>
+      <div class="pillar-foot">
+        <span class="ptag blue">30% του budget</span>
+        <span class="ptag">4–5 links</span>
+        <span class="ptag">⏰ Deadline 15 Μαΐου</span>
+      </div>
+    </div>
+    <div class="pillar anim d4 scale">
+      <span class="pnum">04</span>
+      <div class="pillar-top">
+        <span class="picon">💸</span>
+        <div class="ptitle">Bazoom Live Discounts</div>
+        <div class="pbody">Live publisher εκπτώσεις έως <strong style="color:var(--lime)">-79%</strong> — DR 25–31 sites στην τιμή DR 13–20. Time-limited deals που αξιοποιούμε άμεσα.</div>
+      </div>
+      <div class="pillar-foot">
+        <span class="ptag accent">έως -79% έκπτωση</span>
+        <span class="ptag">DR 25–31 sites</span>
+        <span class="ptag">🔥 Limited deals</span>
+      </div>
+    </div>
   </div>
 </div>
 
